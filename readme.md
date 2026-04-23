@@ -1,4 +1,4 @@
-# HAPPI Climate Data Bias-Correction (Logic Demo)
+# HAPPI Climate Data Bias-Correction
 
 This repository demonstrates the scientific logic used to process and bias-adjust daily climate projection data from the **HAPPI** (Half a degree Additional warming, Prognosis and Projected Impacts) dataset, using **CHELSA-W5E5** as a reference.
 
@@ -26,23 +26,28 @@ Before you begin, ensure you have the following installed:
 
 ### Getting Started
 
-To clone the repository and set up the environment, run the following commands in your terminal:
+To clone the repository and set up the environment, follow these steps:
 
+1. **Clone the repository:**
 ```bash
 git clone https://github.com/zalf-csa/HAPPI-Climate-Bias-Correction.git
 cd HAPPI-Climate-Bias-Correction
+```
 
-# Ensure R is in your PATH. If 'Rscript' is not recognized, run:
-# (Developed using R 4.4.3, but compatible with most recent R versions)
-# Windows (Command Prompt): set PATH=C:\Path\To\R\bin;%PATH%
-# Windows (PowerShell): $env:PATH += ";C:\Path\To\R\bin"
-# Linux/macOS: export PATH="/path/to/R/bin:$PATH"
+2. **Ensure R is in your PATH:**
+If `Rscript` is not recognized, run the appropriate command for your system:
+- **Windows (Command Prompt):** `set PATH=C:\Path\To\R\bin;%PATH%`
+- **Windows (PowerShell):** `$env:PATH += ";C:\Path\To\R\bin"`
+- **Linux/macOS:** `export PATH="/path/to/R/bin:$PATH"`
 
-# Initialize the R environment
+3. **Initialize the R environment:**
+```bash
 Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')"
 Rscript -e "renv::init(bare = TRUE)"
+```
 
-# Install required dependencies
+4. **Install required dependencies:**
+```bash
 Rscript -e "if (!requireNamespace('remotes', quietly = TRUE)) install.packages('remotes')"
 Rscript -e "remotes::install_github(c('SantanderMetGroup/transformeR', 'SantanderMetGroup/downscaleR'))"
 ```
