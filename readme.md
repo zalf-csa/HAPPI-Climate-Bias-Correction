@@ -11,7 +11,7 @@ This repository demonstrates the scientific logic used to process and bias-adjus
 | File | Category | Purpose |
 | :--- | :--- | :--- |
 | `settings.R` | Configuration | Site coordinates, GCM selection, and period settings. For this demo, we run only for 1 GCM, 1 ensemble member, and 1 period for 1 location. |
-| `01_extract_cluster_data.R` | Data Extraction | Script used to extract filtering data from global datasets. |
+| `01_extract_cluster_data.R` | Data Extraction | Script used to extract and filter data from global datasets. |
 | `extracted_sample_Tempelberg/` | Data Sample | Pre-extracted CSV files for Tempelberg (Observed, Hist, Future). |
 | `02_bias_correction.R` | Primary Demo | Core scientific logic (EQM) and unit conversions. Runs locally. |
 
@@ -19,7 +19,7 @@ This repository demonstrates the scientific logic used to process and bias-adjus
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed:
+Ensure the following are installed before proceeding:
 - **Git**: [Download here](https://git-scm.com/downloads)
 - **R (>= 4.0 recommended)**: [Download here](https://cloud.r-project.org/)
 - **RTools (Windows only)**: [Download here](https://cran.r-project.org/bin/windows/Rtools/)
@@ -34,8 +34,8 @@ git clone https://github.com/zalf-csa/HAPPI-Climate-Bias-Correction.git
 cd HAPPI-Climate-Bias-Correction
 ```
 
-2. **Ensure R is in your PATH:**
-If `Rscript` is not recognized, run the appropriate command for your system:
+2. **Ensure R is in the system PATH:**
+If `Rscript` is not recognized, run the appropriate command for the operating system:
 - **Windows (Command Prompt):** `set PATH=C:\Path\To\R\bin;%PATH%`
 - **Windows (PowerShell):** `$env:PATH += ";C:\Path\To\R\bin"`
 - **Linux/macOS:** `export PATH="/path/to/R/bin:$PATH"`
@@ -53,7 +53,7 @@ Rscript -e "remotes::install_github(c('SantanderMetGroup/transformeR', 'Santande
 ```
 
 ### Step 1: Data Extraction
-The script `01_extract_cluster_data.R` is used to extract filtering data from the global datasets for a specific location. It assumes the datasets from the **Original Data Sources** section have been downloaded into a base directory (e.g., `base_dir <- "C:/Data/Climate"` or a network drive). Due to the huge amount of weather data involved in the extraction (multi-terabyte scale), this repository already provides the output from this step in the `extracted_sample_Tempelberg/` folder to serve as the input data for running Step 2 below. You can review the script to understand the extraction and filtering logic.
+The script `01_extract_cluster_data.R` is used to extract and filter data from the global datasets for a specific location. It assumes the datasets from the **Original Data Sources** section have been downloaded into a base directory (e.g., `base_dir <- "C:/Data/Climate"` or a network drive). Due to the huge amount of weather data involved in the extraction (multi-terabyte scale), this repository already provides the output from this step in the `extracted_sample_Tempelberg/` folder to serve as the input data for running Step 2 below. One can review the script to understand the extraction and filtering logic.
 
 ### Step 2: Bias Correction (Processing Script)
 To produce the bias correction results, run:
