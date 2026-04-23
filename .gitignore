@@ -47,3 +47,10 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
+# Project Specific Ignored Files
+.idea/
+results/
+renv/library/
+renv/local/
+renv/staging/
