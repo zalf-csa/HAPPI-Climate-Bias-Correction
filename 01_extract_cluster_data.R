@@ -3,7 +3,7 @@ library(terra)
 source("settings.R")
 
 # --- CONSOLIDATED EXTRACTION SCRIPT ---
-# This script runs on the cluster to generate the small CSV files for the repo.
+# This script generates the small CSV files for the repo from global datasets.
 
 if (!dir.exists(sample_path)) dir.create(sample_path)
 

@@ -12,8 +12,7 @@ ens_member <- "ens0000"
 period <- "Current"
 
 # 3. Paths
-# On Cluster: /beegfs/common/data/climate
-# Local: Path where you saved the extracted CSVs
+# Local or Cluster Path to the global datasets
 base_dir <- "/beegfs/common/data/climate" 
 
 # Using file.path() for cross-platform compatibility

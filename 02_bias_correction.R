@@ -81,4 +81,4 @@ output_cols <- c("date", "rsds", "tasmax", "tasmin", "hurs", "pr", "sfcWind")
 output_filename <- paste0(output_dir, "/", gcm_name, "_", ens_member, "_", site_name, ".csv")
 write.csv(final_df[, output_cols], output_filename, row.names = FALSE)
 
-cat("Successfully generated REAL demo output:", output_filename, "\n")
+cat("Successfully generated output to:", output_filename, "\n")
