@@ -21,7 +21,7 @@ This repository demonstrates the scientific logic used to process and bias-adjus
 
 Ensure the following are installed before proceeding:
 - **Git**: [Download here](https://git-scm.com/downloads)
-- **R (>= 4.0 recommended)**: [Download here](https://cloud.r-project.org/)
+- **R (>= 4.0 recommended, developed with 4.4.3)**: [Download here](https://cloud.r-project.org/)
 - **RTools (Windows only)**: [Download here](https://cran.r-project.org/bin/windows/Rtools/)
 
 ### Getting Started
