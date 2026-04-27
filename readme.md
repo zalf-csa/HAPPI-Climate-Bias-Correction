@@ -29,6 +29,7 @@ Ensure the following are installed before proceeding:
 To clone the repository and set up the environment, follow these steps:
 
 1. **Clone the repository and navigate into the folder:**
+Open your terminal (Command Prompt or PowerShell on Windows, or terminal on Linux/macOS) and run:
 ```bash
 git clone https://github.com/zalf-csa/HAPPI-Climate-Bias-Correction.git
 cd HAPPI-Climate-Bias-Correction
