@@ -28,7 +28,7 @@ Ensure the following are installed before proceeding:
 
 To clone the repository and set up the environment, follow these steps:
 
-1. **Clone the repository:**
+1. **Clone the repository and navigate into the folder:**
 ```bash
 git clone https://github.com/zalf-csa/HAPPI-Climate-Bias-Correction.git
 cd HAPPI-Climate-Bias-Correction
@@ -40,20 +40,23 @@ If `Rscript` is not recognized, run the appropriate command for the operating sy
 - **Windows (PowerShell):** `$env:PATH += ";C:\Path\To\R\bin"`
 - **Linux/macOS:** `export PATH="/path/to/R/bin:$PATH"`
 
-3. **Initialize the R environment:**
+3. **Set up the R environment:**
+Run the following command to initialize the project environment and install all required packages (including dependencies from GitHub and `terra`):
+
 ```bash
-Rscript -e "if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv')"
-Rscript -e "renv::init(bare = TRUE)"
+Rscript -e "Sys.setenv(RENV_CONFIG_SYNCHRONIZED_CHECK = 'FALSE'); if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
 ```
 
-4. **Install required dependencies:**
+*Note: This command handles everything. If `renv::restore()` fails (e.g., due to GitHub connection issues), you can try installing the packages manually:*
 ```bash
 Rscript -e "if (!requireNamespace('remotes', quietly = TRUE)) install.packages('remotes')"
-Rscript -e "remotes::install_github(c('SantanderMetGroup/transformeR', 'SantanderMetGroup/downscaleR'))"
+Rscript -e "remotes::install_github(c('SantanderMetGroup/transformeR', 'SantanderMetGroup/downscaleR'), upgrade = 'never', dependencies = TRUE)"
 ```
 
-### Step 1: Data Extraction
-The script `01_extract_cluster_data.R` is used to extract and filter data from the global datasets for a specific location. It assumes the datasets from the **Original Data Sources** section have been downloaded into a base directory (e.g., `base_dir <- "C:/Data/Climate"` or a network drive). Due to the huge amount of weather data involved in the extraction (multi-terabyte scale), this repository already provides the output from this step in the `extracted_sample_Tempelberg/` folder to serve as the input data for running Step 2 below. One can review the script to understand the extraction and filtering logic.
+### Step 1: Data Extraction (Informational / Reference Only)
+The script `01_extract_cluster_data.R` is used to extract and filter data from the global datasets for a specific location. It assumes the datasets from the **Original Data Sources** section have been downloaded into a base directory (e.g., `base_dir <- "C:/Data/Climate"` or a network drive). 
+
+**Note:** Running this script is **not required** for the demo. Due to the huge amount of weather data involved in the extraction (multi-terabyte scale), this repository already provides the output from this step in the `extracted_sample_Tempelberg/` folder. This pre-extracted data serves as the direct input for Step 2. One can review the script to understand the extraction and filtering logic.
 
 ### Step 2: Bias Correction (Processing Script)
 To produce the bias correction results, run:

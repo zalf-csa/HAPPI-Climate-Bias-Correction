@@ -4,6 +4,13 @@ source("settings.R")
 
 # --- CONSOLIDATED EXTRACTION SCRIPT ---
 # This script generates the small CSV files for the repo from global datasets.
+# It requires multi-terabyte datasets to be present at 'base_dir'.
+
+if (!dir.exists(base_dir)) {
+  stop(paste0("Error: Global data directory '", base_dir, "' not found.\n",
+              "This script is for reference and requires massive external datasets.\n",
+              "For the demo, use the pre-extracted data in '", sample_path, "' and run Step 2."))
+}
 
 if (!dir.exists(sample_path)) dir.create(sample_path)
 
