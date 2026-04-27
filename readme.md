@@ -21,8 +21,8 @@ This repository demonstrates the scientific logic used to process and bias-adjus
 
 Ensure the following are installed before proceeding:
 - **Git**: [Download here](https://git-scm.com/downloads)
-- **R (>= 4.0 recommended, developed with 4.4.3)**: [Download here](https://cloud.r-project.org/)
-- **RTools (Windows only)**: [Download here](https://cran.r-project.org/bin/windows/Rtools/)
+- **R (>= 4.4.0 required, developed and tested with 4.4.3)**: [Download here](https://cloud.r-project.org/)
+- **RTools (Windows only)**: [Download here](https://cran.r-project.org/bin/windows/Rtools/) (Ensure RTools version matches your R version)
 
 ### Getting Started
 
@@ -42,7 +42,9 @@ If `Rscript` is not recognized, run the appropriate command for the operating sy
 - **Linux/macOS:** `export PATH="/path/to/R/bin:$PATH"`
 
 3. **Set up the R environment:**
-Run the following command to initialize the project environment and install all required packages (including dependencies from GitHub and `terra`):
+Run the following command to initialize the project environment and install all required packages. 
+
+**Important:** This project requires **R >= 4.4.0** (developed and tested with **4.4.3**) because the package versions in `renv.lock` (like `MASS` and `Matrix`) are built for the latest R release. If you use an older R version, `renv::restore()` will fail.
 
 ```bash
 Rscript -e "Sys.setenv(RENV_CONFIG_SYNCHRONIZED_CHECK = 'FALSE'); if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
