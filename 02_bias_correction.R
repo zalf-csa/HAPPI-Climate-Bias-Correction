@@ -60,9 +60,10 @@ final_df$tasmin <- final_df$tas - final_df$tasskew * final_df$tasrange
 final_df$tasmax <- final_df$tasrange + final_df$tasmin
 
 # Load auxiliary variables (hurs, sfcWind, rsds)
-final_df$hurs <- mod_fut_df$hurs
-final_df$sfcWind <- mod_fut_df$sfcWind
-final_df$rsds <- mod_fut_df$rsds
+# Note: In some sample datasets, these might be missing in historical files
+final_df$hurs <- if ("hurs" %in% names(mod_fut_df)) mod_fut_df$hurs else rep(0, nrow(final_df))
+final_df$sfcWind <- if ("sfcWind" %in% names(mod_fut_df)) mod_fut_df$sfcWind else rep(0, nrow(final_df))
+final_df$rsds <- if ("rsds" %in% names(mod_fut_df)) mod_fut_df$rsds else rep(0, nrow(final_df))
 
 # 4. FINAL UNIT CONVERSIONS AND CLEANUP
 final_df$pr <- final_df$pr * 86400
