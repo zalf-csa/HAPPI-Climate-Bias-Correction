@@ -12,7 +12,13 @@ cat("--- Processing Bias Correction for:", site_name, "---\n")
 # 1. LOAD CONSOLIDATED DATA
 obs_df <- read.csv(paste0(sample_path, "/CHELSA_Observed_", site_name, ".csv"))
 mod_ref_df <- read.csv(paste0(sample_path, "/HAPPI_Historical_", site_name, ".csv"))
-mod_fut_df <- read.csv(paste0(sample_path, "/HAPPI_Future_", site_name, ".csv"))
+
+if (run_future) {
+  mod_fut_df <- read.csv(paste0(sample_path, "/HAPPI_Future_", site_name, ".csv"))
+} else {
+  cat("  Notice: run_future is FALSE. Bias-correcting Historical against itself for demonstration.\n")
+  mod_fut_df <- mod_ref_df
+}
 
 # Convert dates
 obs_df$date <- as.Date(obs_df$date)
@@ -78,7 +84,8 @@ final_df$sfcWind[final_df$sfcWind < 0] <- 0
 
 # 5. WRITE FINAL CSV
 output_cols <- c("date", "rsds", "tasmax", "tasmin", "hurs", "pr", "sfcWind")
-output_filename <- paste0(output_dir, "/", gcm_name, "_", ens_member, "_", site_name, ".csv")
+period_suffix <- if(run_future) "" else "_historical_only"
+output_filename <- paste0(output_dir, "/", gcm_name, "_", ens_member, "_", site_name, period_suffix, ".csv")
 write.csv(final_df[, output_cols], output_filename, row.names = FALSE)
 
 cat("Successfully generated output to:", output_filename, "\n")

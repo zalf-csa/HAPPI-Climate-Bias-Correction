@@ -10,7 +10,7 @@ This repository demonstrates the scientific logic used to process and bias-adjus
 
 | File | Category | Purpose |
 | :--- | :--- | :--- |
-| `settings.R` | Configuration | Site coordinates, GCM selection, and period settings. For this demo, we run only for 1 GCM, 1 ensemble member, and 1 period for 1 location. |
+| `settings.R` | Configuration | Site coordinates, GCM selection, processing options, and paths. |
 | `01_extract_cluster_data.R` | Data Extraction | Script used to extract and filter data from global datasets. |
 | `extracted_sample_Tempelberg/` | Data Sample | Pre-extracted CSV files for Tempelberg (Observed, Hist, Future). |
 | `02_bias_correction.R` | Primary Demo | Core scientific logic (EQM) and unit conversions. Runs locally. |
@@ -47,7 +47,7 @@ Run the following command to initialize the project environment and install all 
 Rscript -e "Sys.setenv(RENV_CONFIG_SYNCHRONIZED_CHECK = 'FALSE'); if (!requireNamespace('renv', quietly = TRUE)) install.packages('renv'); renv::restore(prompt = FALSE)"
 ```
 
-*Note: This command handles everything. If `renv::restore()` fails (e.g., due to GitHub connection issues), you can try installing the packages manually:*
+*Note: This command handles everything. If `renv::restore()` fails (e.g., due to GitHub connection issues), you can install the packages manually (this is the most common fix for `downscaleR` download issues):*
 ```bash
 Rscript -e "if (!requireNamespace('remotes', quietly = TRUE)) install.packages('remotes')"
 Rscript -e "remotes::install_github(c('SantanderMetGroup/transformeR', 'SantanderMetGroup/downscaleR'), upgrade = 'never', dependencies = TRUE)"
@@ -63,9 +63,11 @@ To produce the bias correction results, run:
 ```bash
 Rscript 02_bias_correction.R
 ```
-This script applies the **Empirical Quantile Mapping (EQM)** method to the sample data and performs necessary unit conversions. 
+This script applies the **Empirical Quantile Mapping (EQM)** method to the sample data. 
 
-**Output:** Upon execution, the script generates a final bias-adjusted daily weather CSV file (e.g., `ETH-CAM4-2degree_ens0000_Tempelberg.csv`) in the `results/` folder.
+**Note on datasets:** By default, it processes both Historical and Future data. To process **only Historical data** (Happi_historical), open `settings.R` and set `run_future <- FALSE`.
+
+**Output:** Upon execution, the script generates a final bias-adjusted daily weather CSV file in the `results/` folder.
 
 ## 📊 Output Data Format
 The final output is a CSV file (e.g., `ETH-CAM4-2degree_ens0000_Tempelberg.csv`) containing:

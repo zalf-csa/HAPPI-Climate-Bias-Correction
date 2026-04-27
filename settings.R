@@ -9,9 +9,12 @@ lat <- 52.4426
 # 2. Climate Model Metadata
 gcm_name <- "ETH-CAM4-2degree"
 ens_member <- "ens0000"
-period <- "Current"
 
-# 3. Paths
+# 3. Processing Options
+# Set run_future to FALSE if you only want to process Happi_historical (e.g. for testing)
+run_future <- TRUE
+
+# 4. Paths
 # Local or Cluster Path to the global datasets
 base_dir <- "/beegfs/common/data/climate" 
 
