@@ -50,6 +50,7 @@ rsconnect/
 
 # Project Specific Ignored Files
 .idea/
+.junie/
 results/
 renv/library/
 renv/local/

@@ -9,6 +9,7 @@ lat <- 52.4426
 # 2. Climate Model Metadata
 gcm_name <- "ETH-CAM4-2degree"
 ens_member <- "ens0000"
+period <- "2.0"
 
 # 3. Processing Options
 # Set run_future to FALSE if you only want to process Happi_historical (e.g. for testing)
